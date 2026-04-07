@@ -1,1 +1,332 @@
-modified 12:57pm
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Aagin Kavalloor</title>
+        <link rel="icon" sizes="32x32" href="/fav.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./dark_portfolio_files/w3.css">
+        <link rel="stylesheet" href="./dark_portfolio_files/css">
+        <link rel="stylesheet" href="./dark_portfolio_files/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="css/video.css">
+        
+        <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+        <script src="//code.angularjs.org/snapshot/angular-sanitize.js"></script>
+        <style>
+            body, h1,h2,h3,h4,h5,h6 {
+                font-family: "Montserrat", sans-serif
+            }
+            .w3-row-padding img {
+                margin-bottom: 12px
+            }
+            /* Set the width of the sidebar to 120px */
+            .w3-sidebar {
+                width: 120px;
+                background: #222;
+            }
+            /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+            #main {
+                margin-left: 120px
+            }
+            /* Remove margins from "page content" on small screens */
+            @media only screen and (max-width: 600px) {
+                #main {
+                    margin-left: 0
+                }
+            }
+        </style>
+        <script >
+            var projects;
+            function download(fileName) {
+//                alert("download " + fileName);
+
+                //Set the File URL.
+                var url = "downloads/" + fileName;
+
+                //Create XMLHTTP Request.
+                var req = new XMLHttpRequest();
+                req.open("GET", url, true);
+                req.responseType = "blob";
+                req.onload = function () {
+                    //Convert the Byte Data to BLOB object.
+                    var blob = new Blob([req.response], {type: "application/octetstream"});
+
+                    //Check the Browser type and download the File.
+                    var isIE = false || !!document.documentMode;
+                    if (isIE) {
+                        window.navigator.msSaveBlob(blob, fileName);
+                    } else {
+                        var url = window.URL || window.webkitURL;
+                        link = url.createObjectURL(blob);
+                        var a = document.createElement("a");
+                        a.setAttribute("download", fileName);
+                        a.setAttribute("href", link);
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    }
+                };
+                req.send();
+            }
+            function init() {
+
+            }
+
+            var app = angular.module('app1', ['ngSanitize']);
+            app.controller('ctrl1', ($scope) => {
+//                $scope.projects = projects;
+                const request = new XMLHttpRequest();
+                request.open("GET", "projects.json", false); // `false` makes the request synchronous
+                request.send(null);
+
+                if (request.status === 200) {
+                    console.log(request.responseText);
+                    $scope.projects = JSON.parse(request.responseText);
+                }
+
+                $scope.call_href = "tel:+971501272181";
+                $scope.locate_href = "https://www.google.com/maps/place/THE+FILIPINO+DENTAL/@25.2681686,55.3181125,102m/data=!3m1!1e3!4m6!3m5!1s0x3e5f5d768afb39ff:0x963ba1dbba57f870!8m2!3d25.2681327!4d55.3180453!16s%2Fg%2F11vc9hb88k!5m1!1e4?entry=ttu";
+                $scope.whatsapp_href = "https://wa.me/971501272181?text=Hello, THE FILIPINO DENTAL Clinic. I%20would%20like%20to%20book%20an%20appointment.";
+
+                $scope.phoneBlock = "<a class='phone' href='tel:+971501272181'> \n\
+                                        <span class='material-icons' >call</span>\n\
+                                        Call Now\n\
+                                </a>";
+
+                $scope.locateBlock = "<a  class='phone' href='https://www.google.com/maps/place/THE+FILIPINO+DENTAL/@25.2681686,55.3181125,102m/data=!3m1!1e3!4m6!3m5!1s0x3e5f5d768afb39ff:0x963ba1dbba57f870!8m2!3d25.2681327!4d55.3180453!16s%2Fg%2F11vc9hb88k!5m1!1e4?entry=ttu' >\n\
+                                            <span class='material-icons' >room</span>\n\
+                                            Locate  \n\
+                                   </a> ";
+
+                $scope.whatsappBlock = '<a href="https://wa.me/971501272181?text=Hello, THE FILIPINO DENTAL Clinic. I%20would%20like%20to%20book%20an%20appointment."  class="phone"> \n\
+                                        <img src="./images/WhatsApp.svg" alt="whatsapp" width="30px" /> \n\
+                                            WhatsApp \n\
+                                    </a> ';
+            });
+
+
+
+
+
+        </script>
+    </head>
+
+    <body onload="init()" ng-app="app1" ng-controller="ctrl1" class="w3-black">
+
+
+        <!-- Icon Bar (Sidebar - hidden on small screens) -->
+        <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+            <!-- Avatar image in top left corner -->
+            <img src="./dark_portfolio_files/user_avatar.png" style="width:100%" alt="">
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+                <i class="fa fa-home w3-xxlarge"></i>
+                <p>HOME</p>
+            </a>
+            <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <i class="fa fa-user w3-xxlarge"></i>
+                <p>ABOUT</p>
+            </a>
+            <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <i class="fa fa-eye w3-xxlarge"></i>
+                <p>PROJECTS</p>
+            </a>
+            <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+                <i class="fa fa-envelope w3-xxlarge"></i>
+                <p>CONTACT</p>
+            </a>
+        </nav>
+
+        <!-- Navbar on small screens (Hidden on medium and large screens) -->
+        <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+            <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+                <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+                <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+                <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important">PROJECTS</a>
+                <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="w3-padding-large" id="main">
+            <!-- Header/Home -->
+            <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+                <h1 class="w3-jumbo"><span class="w3-hide-small">
+                        I'm </span> Aagin Kavalloor
+                </h1>
+                <p>
+
+                    VIDEO EDITOR |
+                    PHOTOGRAPHER |
+                    MOTION-GRAPHICS ARTIST  |
+                    SOCIAL  MEDIA HANDLER |
+                    GRAPHICS DESIGNING
+                </p>
+                <!--<img src="./dark_portfolio_files/profile_pic_1_black.jpg" alt="boy" class="w3-image" width="992" height="1108">-->
+            </header>
+
+         
+
+
+
+            <!-- About Section -->
+            <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+                <h2 class="w3-text-light-grey">About Me</h2>
+                <hr style="width:200px" class="w3-opacity">
+                <p>
+                    Creative Video Editor and Multimedia professional with experience in remote post-production and
+                    digital storytelling. Specialized in high-impact visual content, cinematic animated sequences, and
+                    professional branding assets.
+
+                </p>
+                <h3 class="w3-padding-16 w3-text-light-grey">My Skills</h3>
+
+                <p class="w3-wide">Adobe Premier Pro.</p>
+                <div class="w3-white">
+                    <div class="w3-dark-grey" style="height:28px;width:90%"></div>
+                </div>
+
+                <p class="w3-wide">Adobe After Effects
+                </p>
+                <div class="w3-white">
+                    <div class="w3-dark-grey" style="height:28px;width:90%"></div>
+                </div>
+
+                <p class="w3-wide">Adobe Photoshop</p>
+                <div class="w3-white">
+                    <div class="w3-dark-grey" style="height:28px;width:90%"></div>
+                </div>
+
+                <p class="w3-wide">Adobe Illustrator</p>
+                <div class="w3-white">
+                    <div class="w3-dark-grey" style="height:28px;width:90%"></div>
+                </div>
+
+                <p class="w3-wide">Adobe Lightroom</p>
+                <div class="w3-white">
+                    <div class="w3-dark-grey" style="height:28px;width:90%"></div>
+                </div>
+
+                <p class="w3-wide">Social Media</p>
+                <div class="w3-white">
+                    <div class="w3-dark-grey" style="height:28px;width:80%"></div>
+                </div>
+
+
+                <br>
+
+                <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-xlarge">11+</span><br>
+                        Partners
+                    </div>
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-xlarge">55+</span><br>
+                        Projects Done
+                    </div>
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-xlarge">89+</span><br>
+                        Happy Clients
+                    </div>
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-xlarge">150+</span><br>
+                        Meetings
+                    </div>
+                </div>
+
+
+                <button class="w3-button w3-light-grey w3-padding-large w3-section" onclick="download('Aagin.K.Anil Resume.pdf')">
+                    <i class="fa fa-download"></i> Download Resume
+                </button>
+
+
+
+                <!-- Testimonials -->
+                <h3 class="w3-padding-24 w3-text-light-grey">My Reputation</h3>  
+                <img src="./dark_portfolio_files/avatar_mamooty.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
+                <p><span class="w3-large w3-margin-right">Kodimon Potti,</span>Head of Pinjamon Illam</p>
+                <p>He saved us from a web disaster.</p><br>
+
+                <img src="./dark_portfolio_files/avatar_vijay.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
+                <p><span class="w3-large w3-margin-right">Veeru Raghu,</span>   RAW agent.</p>
+                <p>No one is better than  him.</p>
+                <!-- End About Section -->
+            </div>
+
+
+
+            <!-- Contact Section -->
+            <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+                <h2 class="w3-text-light-grey">Contact Me</h2>
+                <hr style="width:200px" class="w3-opacity">
+
+                <div class="w3-section">
+                    <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> 
+                        Thrissur-Kerala-India
+                    </p>
+                    <a href="tel:9633544170" style="text-decoration: none">
+                        <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> 
+                            9633544170
+                        </p>
+                    </a>
+                    <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> 
+                        aaginkavalloorpro@gmail.com</p>
+                </div><br>
+
+                <!-- End Contact Section -->
+            </div>
+
+
+            <!-- projects Section -->
+            <div class="w3-padding-64 w3-content w3-text-grey" id="projects">
+                <h2 class="w3-text-light-grey">My Projects</h2>
+                <hr style="width:200px" class="w3-opacity">
+                
+                
+                
+                 <div class="video-container">
+                <a href="https://www.behance.net/gallery/247079825/iPhone-17-Concept-Advertisement">
+
+                    <img src="image/iPhone  Concept Advertisement Thumbnail.PNG"
+                         style="width: 100%" alt="iphone17"
+                         class="thumbnail">
+                    <!-- Inline SVG Play Button -->
+                    <svg class="play-button" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="90" fill="rgba(0,0,0,0.5)" stroke="#fff" stroke-width="10"/>
+                    <polygon points="70,55 70,145 145,100" fill="#fff"/>
+                    </svg>
+                </a>
+            </div>  
+
+
+<!--                <div ng-repeat="project in projects" class="w3-section">
+                    <p>
+                        <a href="{{project.url}}" style="text-decoration: none">
+                            <i class="fa fa-archive fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> 
+                            {{project.title}}
+                        </a>
+                    </p>
+
+                </div>-->
+
+                <br>
+
+                <!-- End projects Section -->
+            </div>
+
+
+
+            <!-- Footer -->
+            <footer class="w3-content w3-padding w3-text-grey w3-xlarge">
+                <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                <i class="fa fa-instagram w3-hover-opacity"></i>
+                <i class="fa fa-snapchat w3-hover-opacity"></i>
+                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+                <i class="fa fa-linkedin w3-hover-opacity"></i>
+                <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+                <!-- End footer -->
+            </footer>
+
+            <!-- END PAGE CONTENT -->
+        </div>
+
+    </body></html>
